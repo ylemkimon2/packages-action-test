@@ -12,9 +12,12 @@ env:
 jobs:
   push:
     runs-on: ubuntu-latest
+    environment: packages
 
     steps:
       - uses: actions/checkout@v2
+      
+      - run: echo "${{ secrets.TEST }}"
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
